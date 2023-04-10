@@ -1,0 +1,9 @@
+/* Likes en Instagram */
+.btn-like{
+    color:#000!important;
+    text-decoration:none!important;
+}
+.btn-dislike{
+    color:red!important;
+    text-decoration:none!important;
+}

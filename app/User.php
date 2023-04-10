@@ -10,30 +10,42 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table      = "users";
+    protected $primaryKey = "id";
+    public $timestamps    = true;
+    
     protected $fillable = [
-        'name', 'email', 'password',
+        'role',
+        'name',
+        'surname',
+        'nick',        
+        'email',
+        'password',
+        'image'
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token'
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime'
     ];
+
+    /* RELACION DE UNO A MUCHOS */
+    //Un usuario puede tener muchas imagenes
+    public function images(){
+        return $this->hasMany("App\Image");
+    }
+
+    //Un usuario puede tener muchos comentarios
+    public function comments(){
+        return $this->hasMany("App\Comment");
+    }
+    
+    //Un usuario puede tener muchos likes
+    public function likes(){
+        return $this->hasMany("App\Like");
+    }
 }
